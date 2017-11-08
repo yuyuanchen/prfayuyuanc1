@@ -49,9 +49,11 @@
     # Generate the plot
 
 
-    ggplot(plot_data, aes(month)) +
-      geom_line(aes(y = plot_data$x, colour = suburbs[1])) +
-      geom_line(aes(y = plot_data$y, colour = suburbs[2]))+
+    Suburbs=suburbs[1]
+    suburbs_1=suburbs[2]
+    ggplot(plot_data, aes(month)) + 
+      geom_line(aes(y = plot_data$x, colour = Suburbs)) + 
+      geom_line(aes(y = plot_data$y, colour = suburbs_1))+
       labs(x="month",
            y=offence_description)+scale_fill_discrete(name = "Suburbs")+
       scale_x_continuous(breaks=seq(0,12,1))+
