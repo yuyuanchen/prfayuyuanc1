@@ -13,7 +13,7 @@
 #' @return  A ggplot object showing the correlation in offence count between the two input postcodes.
 #' @examples
 #' <one or two examples showing how to use the function>
-  correlation_offence_level_3_suburbs<- function(crime_data, offence_description, postcodes) {
+  correlation_offence_level_3_suburbs<- function(crime_data, offence_description, suburbs) {
     if (length(suburbs)!=2) {
       stop("Please enter two suburbs")
     }
