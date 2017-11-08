@@ -1,0 +1,15 @@
+Package: prfayuyuanc1
+Imports: ggplot2,
+         data.table
+Type: Package
+Title: Correlation analysis on offence event number
+Version: 0.1
+Date: 2017-11-02
+Authors@R: c(
+    person("Yuyuan", "Chen", email = "yuyuanc1@andrew.cmu.edu", role = "cre"))
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: This method is used to plot the correlaiton of offence event number
+              between two given suburb areas given description in offence level 3
+License: What license is it under?
+LazyData: TRUE
+RoxygenNote: 6.0.1
