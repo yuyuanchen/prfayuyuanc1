@@ -60,4 +60,5 @@
     geom_line(aes(y = plot_data$sum_y, colour = Suburbs_1))+
     labs(x="month",
          y=offence_description)+scale_fill_discrete(name = "Suburbs")
+    return (final_plot)
 }
