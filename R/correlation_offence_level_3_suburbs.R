@@ -36,27 +36,28 @@
     # Make a data table for plotting using data.table transformations
     # You will need to filter, summarise and group by
     # Expect cols: "date", "suburb", "total_offence_count"
-    plot_data <- crime_data[(suburb==suburbs[1]|suburb==suburbs[2])&offence_level_3==offence_description,.(total_offence_count=sum(offence_count)),by = .(month(date),suburb)]
+    plot_data <- crime_data[(suburb==suburbs[1]|suburb==suburbs[2])&offence_level_3==offence_description,.(total_offence_count=sum(offence_count)),by = .(date,suburb)]
 
 
     # These lines will transform the plot_data structure to allow us to plot
     # correlations. Try them out
     plot_data[, suburb := plyr::mapvalues(suburb, suburbs, c("x", "y"))]
 
-    plot_data <- dcast(plot_data, month ~ suburb, fun = sum,
+    plot_data <- dcast(plot_data, date ~ suburb, fun = sum,
                        fill = 0, value.var = "total_offence_count")
+
 
     # Generate the plot
 
+  plot_data <-plot_data[,.(sum_x=sum(x),sum_y=sum(y)),by = .(month(date))]
+  plot_data$month=factor(plot_data$month,level=c("7","8","9","10","11","12","1","2","3","4","5","6"))
+  
 
-    Suburbs=suburbs[1]
-    suburbs_1=suburbs[2]
-    ggplot(plot_data, aes(month)) + 
-      geom_line(aes(y = plot_data$x, colour = Suburbs)) + 
-      geom_line(aes(y = plot_data$y, colour = suburbs_1))+
-      labs(x="month",
-           y=offence_description)+scale_fill_discrete(name = "Suburbs")+
-      scale_x_continuous(breaks=seq(0,12,1))+
-      scale_y_continuous(breaks=seq(0,50,5))}
-
-
+  Suburbs=suburbs[1]
+  Suburbs_1=suburbs[2]
+  ggplot(plot_data, aes(month,group = 1)) + 
+    geom_line(aes(y = plot_data_1$sum_x, colour = Suburbs)) + 
+    geom_line(aes(y = plot_data_1$sum_y, colour = Suburbs_1))+
+    labs(x="month",
+         y=offence_description)+scale_fill_discrete(name = "Suburbs")
+}
