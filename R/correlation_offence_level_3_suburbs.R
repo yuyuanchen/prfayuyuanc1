@@ -55,7 +55,7 @@
 
   Suburbs=suburbs[1]
   Suburbs_1=suburbs[2]
-  ggplot(plot_data, aes(month,group = 1)) + 
+  final_plot<-ggplot(plot_data, aes(month,group = 1)) + 
     geom_line(aes(y = plot_data$sum_x, colour = Suburbs)) + 
     geom_line(aes(y = plot_data$sum_y, colour = Suburbs_1))+
     labs(x="month",
